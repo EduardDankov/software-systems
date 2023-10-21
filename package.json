@@ -1,0 +1,14 @@
+{
+  "name": "software-systems",
+  "version": "1.0.0",
+  "description": "A simple project management full-stack application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd ./server && npm run dev\" \"cd ./client && npm run dev\""
+  },
+  "author": "Eduard Dankov <eduard.dankov@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
