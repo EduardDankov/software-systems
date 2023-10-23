@@ -1,8 +1,16 @@
 import './App.scss';
-import axios, {AxiosResponse} from "axios";
+
 import {useEffect, useState} from "react";
 import {Table} from "react-bootstrap";
-import {EntityCount} from "./components/EntityCount.tsx";
+
+import {EntityCount} from "./components/EntityCount";
+
+import {fetchUserCount} from "./controllers/user.controller";
+import {fetchProjectCount} from "./controllers/project.controller";
+import {fetchTaskCount} from "./controllers/task.controller";
+import {fetchFileCount} from "./controllers/file.controller";
+import {fetchBugReportCount} from "./controllers/bugReport.controller";
+import {fetchMessageCount} from "./controllers/message.controller";
 
 function App() {
   const urlProxy: string = "/api/v1";
@@ -15,62 +23,13 @@ function App() {
   const [messageCount, setMessageCount] = useState(-1);
 
   useEffect(() => {
-    getUserCount();
-    getProjectCount();
-    getTaskCount();
-    getFileCount();
-    getBugReportCount();
-    getMessageCount();
+    fetchUserCount(urlProxy, setUserCount);
+    fetchProjectCount(urlProxy, setProjectCount);
+    fetchTaskCount(urlProxy, setTaskCount);
+    fetchFileCount(urlProxy, setFileCount);
+    fetchBugReportCount(urlProxy, setBugReportCount);
+    fetchMessageCount(urlProxy, setMessageCount);
   }, []);
-
-  function getUserCount() {
-    axios
-      .get(`${urlProxy}/user/count`)
-      .then((res: AxiosResponse) => setUserCount(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-  function getProjectCount() {
-    axios
-      .get(`${urlProxy}/project/count`)
-      .then((res: AxiosResponse) => setProjectCount(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-  function getTaskCount() {
-    axios
-      .get(`${urlProxy}/task/count`)
-      .then((res: AxiosResponse) => setTaskCount(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-  function getFileCount() {
-    axios
-      .get(`${urlProxy}/file/count`)
-      .then((res: AxiosResponse) => setFileCount(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-  function getBugReportCount() {
-    axios
-      .get(`${urlProxy}/bug-report/count`)
-      .then((res: AxiosResponse) => setBugReportCount(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-  function getMessageCount() {
-    axios
-      .get(`${urlProxy}/message/count`)
-      .then((res: AxiosResponse) => setMessageCount(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }
 
   return (
     <Table className="greeting align-middle" bordered>
@@ -78,12 +37,36 @@ function App() {
         <EntityCount.Header />
       </thead>
       <tbody>
-        <EntityCount entity="User" count={userCount} onClick={getUserCount} />
-        <EntityCount entity="Project" count={projectCount} onClick={getProjectCount} />
-        <EntityCount entity="Task" count={taskCount} onClick={getTaskCount} />
-        <EntityCount entity="File" count={fileCount} onClick={getFileCount} />
-        <EntityCount entity="Bug Report" count={bugReportCount} onClick={getBugReportCount} />
-        <EntityCount entity="Message" count={messageCount} onClick={getMessageCount} />
+        <EntityCount
+          entity="User"
+          count={userCount}
+          onClick={() => fetchUserCount(urlProxy, setUserCount)}
+        />
+        <EntityCount
+          entity="Project"
+          count={projectCount}
+          onClick={() => fetchProjectCount(urlProxy, setProjectCount)}
+        />
+        <EntityCount
+          entity="Task"
+          count={taskCount}
+          onClick={() => fetchTaskCount(urlProxy, setTaskCount)}
+        />
+        <EntityCount
+          entity="File"
+          count={fileCount}
+          onClick={() => fetchFileCount(urlProxy, setFileCount)}
+        />
+        <EntityCount
+          entity="Bug Report"
+          count={bugReportCount}
+          onClick={() => fetchBugReportCount(urlProxy, setBugReportCount)}
+        />
+        <EntityCount
+          entity="Message"
+          count={messageCount}
+          onClick={() => fetchMessageCount(urlProxy, setMessageCount)}
+        />
       </tbody>
     </Table>
   );
