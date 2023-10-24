@@ -1,6 +1,6 @@
 import React from "react";
 import axios, {AxiosResponse} from "axios";
-import {formatKebabCase} from "../utils/format/string/formatKebabCase.tsx";
+import {formatKebabCase} from "../utils/format/string/formatKebabCase";
 
 function fetchCount(apiUrl: string, entity: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
   axios
@@ -8,6 +8,7 @@ function fetchCount(apiUrl: string, entity: string, dispatch: React.Dispatch<Rea
     .then((res: AxiosResponse) => dispatch(res.data))
     .catch((err) => {
       console.error(err);
+      window.reportError(err);
     });
 }
 

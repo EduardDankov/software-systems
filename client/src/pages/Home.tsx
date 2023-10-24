@@ -1,10 +1,11 @@
+import './Home.scss';
+
 // Libraries
 import {useEffect, useState} from "react";
 import {Table} from "react-bootstrap";
 
 // Components
 import {EntityCount} from "../components/EntityCount";
-import {ErrorModal} from "../components/ErrorModal";
 
 // Controllers
 import {fetchUserCount} from "../controllers/user.controller";
@@ -16,8 +17,6 @@ import {fetchMessageCount} from "../controllers/message.controller";
 
 function Home() {
   const urlProxy: string = "/api/v1";
-
-  const [isError, setIsError] = useState(false);
 
   const [userCount, setUserCount] = useState(-1);
   const [projectCount, setProjectCount] = useState(-1);
@@ -37,7 +36,6 @@ function Home() {
 
   return (
     <>
-      <ErrorModal show={isError} onHide={() => setIsError(false)} />
       <Table className="greeting align-middle" bordered>
         <thead>
         <EntityCount.Header />
