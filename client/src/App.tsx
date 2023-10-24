@@ -1,8 +1,10 @@
 import './App.scss';
 
-import {Home} from "./pages/Home";
 import {ErrorModal} from "./components/ErrorModal";
 import {useState} from "react";
+import {RouterProvider} from "react-router-dom";
+
+import {router} from "./routes/index.route";
 
 function App() {
   const [isError, setIsError] = useState(false);
@@ -14,7 +16,7 @@ function App() {
   return (
     <>
       <ErrorModal show={isError} onHide={() => setIsError(false)} />
-      <Home />
+      <RouterProvider router={router} />
     </>
   );
 }
