@@ -8,14 +8,21 @@ import {router} from "./routes/index.route";
 
 function App() {
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('An error occurred. Try again later.');
 
-  window.addEventListener('error', () => {
+  window.addEventListener('error', (err) => {
+    err.preventDefault();
     setIsError(true);
+    setErrorMessage(`Code: ${err.error.request.status}. Try again later.`);
   });
 
   return (
     <>
-      <ErrorModal show={isError} onHide={() => setIsError(false)} />
+      <ErrorModal
+        show={isError}
+        onHide={() => setIsError(false)}
+        errorMessage={errorMessage}
+      />
       <RouterProvider router={router} />
     </>
   );

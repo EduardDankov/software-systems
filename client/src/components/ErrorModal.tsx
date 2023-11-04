@@ -3,13 +3,13 @@ import {Button, Modal} from "react-bootstrap";
 interface ErrorModalProps {
   show: boolean;
   onHide: () => void;
+  errorMessage: string;
 }
 
 function ErrorModal(props: ErrorModalProps) {
   return (
     <Modal
       {...props}
-      size="lg"
       aria-labelledby="error-modal-title"
       centered
     >
@@ -19,7 +19,7 @@ function ErrorModal(props: ErrorModalProps) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>An error occurred. Try again later.</p>
+        <p>{props.errorMessage}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

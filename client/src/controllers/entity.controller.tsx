@@ -7,7 +7,6 @@ function fetchCount(apiUrl: string, entity: string, dispatch: React.Dispatch<Rea
     .get(`${apiUrl}/${formatKebabCase(entity)}/count`)
     .then((res: AxiosResponse) => dispatch(res.data))
     .catch((err) => {
-      console.error(err);
       window.reportError(err);
     });
 }
