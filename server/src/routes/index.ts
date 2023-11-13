@@ -5,6 +5,7 @@ import {taskRouter} from "./task.route";
 import {fileRouter} from "./file.route";
 import {bugReportRouter} from "./bugReport.route";
 import {messageRouter} from "./message.route";
+import {testRouter} from "./test.route";
 
 const routes = Router();
 
@@ -14,5 +15,6 @@ routes.use('/task', taskRouter);
 routes.use('/file', fileRouter);
 routes.use('/bug-report', bugReportRouter);
 routes.use('/message', messageRouter);
+routes.use('/test', testRouter);
 
 export { routes };
