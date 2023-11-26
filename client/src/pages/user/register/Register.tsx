@@ -41,7 +41,7 @@ function Register() {
   }, [navigate]);
 
   return (
-    <div className="user-login">
+    <div className="user-register">
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">
