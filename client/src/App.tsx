@@ -1,9 +1,9 @@
 import './App.scss';
 
-import {ErrorModal} from "./components/ErrorModal";
 import {useState} from "react";
 import {RouterProvider} from "react-router-dom";
 
+import {ErrorModal} from "./components/ErrorModal";
 import {router} from "./routes/index.route";
 
 function App() {
