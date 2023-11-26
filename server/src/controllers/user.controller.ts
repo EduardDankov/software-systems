@@ -14,7 +14,7 @@ async function checkIsEmailTaken(req: Request, res: Response) {
 }
 
 async function checkCredentials(req: Request, res: Response) {
-  const queryString: string = 'SELECT COUNT(*) AS is_data_correct FROM users WHERE email=$1 AND password=$2';
+  const queryString: string = 'SELECT user_id AS id, username FROM users WHERE email=$1 AND password=$2';
   const dbRes: QueryResult = await db.query(queryString, [req.body.email, req.body.password]);
   res.status(200).json(dbRes.rows);
 }

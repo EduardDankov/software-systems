@@ -4,20 +4,30 @@ import axios, {AxiosResponse} from "axios";
 import {fetchCount} from "./entity.controller";
 import {LogInCredentials} from "../pages/user/login/LogIn";
 import {RegisterCredentials} from "../pages/user/register/Register";
+import {User} from "../models/user";
 
 function fetchUserCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
   fetchCount(apiUrl, 'user', dispatch);
 }
 
-function fetchUserLogin(
+async function fetchUserLogin(
   apiUrl: string,
   credentials: LogInCredentials,
-  dispatch: React.Dispatch<React.SetStateAction<boolean>>
+  dispatch: React.Dispatch<React.SetStateAction<boolean>>,
+  setUserData: React.Dispatch<React.SetStateAction<User>>
 ) {
-  axios
+  await axios
     .post(`${apiUrl}/user/login`, credentials)
     .then((res: AxiosResponse) => {
-      dispatch(!!+res.data[0].is_data_correct)
+      setUserData({
+        id: res.data[0].id,
+        username: res.data[0].username,
+        email: credentials.email
+      });
+      return res;
+    })
+    .then((res: AxiosResponse) => {
+      dispatch(res.data.length > 0);
     });
 }
 

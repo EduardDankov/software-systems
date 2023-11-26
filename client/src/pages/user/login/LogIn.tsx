@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {fetchUserLogin} from "../../../controllers/user.controller";
+import {User} from "../../../models/user";
 
 type LogInCredentials = {
   email: string;
@@ -13,6 +14,11 @@ type LogInCredentials = {
 function LogIn() {
   const navigate = useNavigate();
   const [isDataCorrect, setIsDataCorrect] = useState(false);
+  const [userData, setUserData] = useState<User>({
+    id: -1,
+    username: "Anonymous",
+    email: "Unknown"
+  });
   const {
     register,
     handleSubmit,
@@ -22,11 +28,14 @@ function LogIn() {
   // eslint-disable-next-line no-control-regex
   const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)])/;
 
-  const handleLogin = (data: FieldValues) => fetchUserLogin('/api/v1', data as LogInCredentials, setIsDataCorrect);
+  const handleLogin = (data: FieldValues) =>
+    fetchUserLogin('/api/v1', data as LogInCredentials, setIsDataCorrect, setUserData);
 
   useEffect(() => {
     if (isDataCorrect) {
+      console.log(userData)
       sessionStorage.setItem('isLoggedIn', "1");
+      sessionStorage.setItem('userData', JSON.stringify(userData));
       navigate('/user');
     }
   }, [isDataCorrect, navigate]);

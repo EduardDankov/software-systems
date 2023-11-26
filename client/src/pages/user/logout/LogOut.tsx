@@ -9,6 +9,7 @@ function LogOut() {
 
   useEffect(() => {
     sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('userData');
     redirectToHome();
   }, []);
 
