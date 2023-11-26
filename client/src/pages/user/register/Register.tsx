@@ -59,7 +59,7 @@ function Register() {
                   errors.username
                     ? (
                       errors.username.type === "required"
-                        ?? <Form.Text className="text-danger">This field is required.</Form.Text>
+                        && <Form.Text className="text-danger">This field is required.</Form.Text>
                     )
                     : <Form.Text className="text-muted">
                       Create your username. It will be used to identify you in the system.
