@@ -5,18 +5,18 @@ import {useEffect} from "react";
 function LogOut() {
   const navigate = useNavigate();
 
-  const redirectToHome = () => navigate('/');
+  const redirectToLogIn = () => navigate('/user/login');
 
   useEffect(() => {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('userData');
-    redirectToHome();
+    redirectToLogIn();
   }, []);
 
   return (
     <div className="user-logout">
       <span>You were logged out. In case you weren't redirected, press the button below.</span>
-      <Button onClick={redirectToHome}></Button>
+      <Button onClick={redirectToLogIn}>Back to login</Button>
     </div>
   );
 }
