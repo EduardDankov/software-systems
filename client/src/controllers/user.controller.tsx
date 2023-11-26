@@ -66,8 +66,25 @@ async function fetchUserRegister(
     });
 }
 
+async function fetchUpdateUser(
+  apiUrl: string,
+  userId: number,
+  field: string,
+  value: string | number | boolean
+) {
+  let result: boolean = false;
+  await axios
+    .post(`${apiUrl}/user/update`, {userId, field, value})
+    .then((res: AxiosResponse) => {
+      result = res.data[0].id === userId;
+    });
+  return result;
+}
+
 export {
   fetchUserCount,
+  fetchIsEmailTaken,
   fetchUserLogin,
-  fetchUserRegister
+  fetchUserRegister,
+  fetchUpdateUser
 };

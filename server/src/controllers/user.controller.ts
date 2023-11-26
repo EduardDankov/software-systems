@@ -26,9 +26,16 @@ async function insertCredentials(req: Request, res: Response) {
   res.status(200).json(dbRes.rows);
 }
 
+async function updateCredentials(req: Request, res: Response) {
+  const queryString: string = `UPDATE users SET ${req.body.field}=$1 WHERE user_id=$2 RETURNING user_id AS id`;
+  const dbRes: QueryResult = await db.query(queryString, [req.body.value, req.body.userId]);
+  res.status(200).json(dbRes.rows);
+}
+
 export {
   getCount,
   checkIsEmailTaken,
   checkCredentials,
-  insertCredentials
+  insertCredentials,
+  updateCredentials
 };
