@@ -1,19 +1,19 @@
 import {Project} from "./project";
 import {User} from "./user";
 
+enum TaskPriority {
+  LOW,
+  NORMAL,
+  HIGH,
+  URGENT
+}
+
 enum TaskStatus {
   CREATED,
   IN_PROCESS,
   DELAYED,
   CANCELED,
   COMPLETED
-}
-
-enum TaskPriority {
-  LOW,
-  NORMAL,
-  HIGH,
-  URGENT
 }
 
 interface Task {
@@ -29,4 +29,5 @@ interface Task {
   deadline: Date;
 }
 
-export { Task };
+export {TaskPriority, TaskStatus};
+export type {Task};

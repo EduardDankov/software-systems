@@ -2,14 +2,18 @@ import {useEffect, useState} from "react";
 import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import {useNavigate, useParams} from "react-router-dom";
 
-import {Project} from "../../../models/project";
 import {fetchProjectData} from "../../../controllers/project.controller";
+import {fetchTaskDataByProject} from "../../../controllers/task.controller";
 import {ProjectTable} from "../../../components/ProjectTable";
-import {User} from "../../../models/user.tsx";
+import { TaskTable } from "../../../components/TaskTable";
+import {Project} from "../../../models/project";
+import {User} from "../../../models/user";
+import {Task} from "../../../models/task";
 
 function ProjectDetails() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Array<Project>>([]);
+  const [tasks, setTasks] = useState<Array<Task>>([]);
 
   const userData: User = JSON.parse(sessionStorage.getItem("userData") || "{}");
   const {projectId} = useParams();
@@ -22,12 +26,17 @@ function ProjectDetails() {
     await fetchProjectData('/api/v1', +projectId!, setProjects);
   };
 
+  const updateTaskList = async () => {
+    await fetchTaskDataByProject('/api/v1', +projectId!, setTasks);
+  }
+
   const editProjectData = () => {
     navigate(`/project/${projectId}/edit`);
   }
 
   useEffect(() => {
     void updateProjectList();
+    void updateTaskList();
   }, []);
 
   return (
@@ -59,6 +68,19 @@ function ProjectDetails() {
               )
             }
             <Button variant="secondary" onClick={() => navigate(`/project`)}>Back</Button>
+
+            <Table className="align-middle" bordered>
+              <thead>
+                <TaskTable.Header />
+              </thead>
+              <tbody>
+              {
+                tasks.map(task =>
+                  <TaskTable key={task.id} taskData={task} />
+                )
+              }
+              </tbody>
+            </Table>
           </Col>
         </Row>
       </Container>
