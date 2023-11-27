@@ -13,7 +13,7 @@ function App() {
   window.addEventListener('error', (err) => {
     err.preventDefault();
     setIsError(true);
-    setErrorMessage(`Code: ${err.error.request.status}. Try again later.`);
+    setErrorMessage(err.error.message);
   });
 
   return (

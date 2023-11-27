@@ -5,6 +5,7 @@ import {Project} from "../../../../models/project";
 import {fetchProjectData, fetchProjectUpdate} from "../../../../controllers/project.controller";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {FieldValues, useForm} from "react-hook-form";
+import {User} from "../../../../models/user.tsx";
 
 function ProjectEdit() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function ProjectEdit() {
     formState: {errors}
   } = useForm({ mode: "onChange" });
 
+  const userData: User = JSON.parse(sessionStorage.getItem("userData") || "{}");
   const {projectId} = useParams();
 
   if (projectId === undefined || +projectId < 1) {
@@ -37,21 +39,25 @@ function ProjectEdit() {
   }, [isDataChanged]);
 
   const changeData = async (data: FieldValues) => {
-    if (projects[0].name !== data?.projectName) {
-      await fetchProjectUpdate('/api/v1', +projectId!, 'project_name', data?.projectName)
-        .then((res: boolean) => {
-          if (res) {
-            setIsDataChanged(true);
-          }
-        });
-    }
-    if (projects[0].description !== data?.projectDescription) {
-      await fetchProjectUpdate('/api/v1', +projectId!, 'project_description', data?.projectDescription)
-        .then((res: boolean) => {
-          if (res) {
-            setIsDataChanged(true);
-          }
-        });
+    if (!userData.id || projects[0].manager.id !== userData.id) {
+      window.reportError(new Error("You cannot edit this project."));
+    } else {
+      if (projects[0].name !== data?.projectName) {
+        await fetchProjectUpdate('/api/v1', +projectId!, 'project_name', data?.projectName)
+          .then((res: boolean) => {
+            if (res) {
+              setIsDataChanged(true);
+            }
+          });
+      }
+      if (projects[0].description !== data?.projectDescription) {
+        await fetchProjectUpdate('/api/v1', +projectId!, 'project_description', data?.projectDescription)
+          .then((res: boolean) => {
+            if (res) {
+              setIsDataChanged(true);
+            }
+          });
+      }
     }
   }
 

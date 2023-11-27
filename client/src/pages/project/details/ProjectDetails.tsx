@@ -5,11 +5,13 @@ import {useNavigate, useParams} from "react-router-dom";
 import {Project} from "../../../models/project";
 import {fetchProjectData} from "../../../controllers/project.controller";
 import {ProjectTable} from "../../../components/ProjectTable";
+import {User} from "../../../models/user.tsx";
 
 function ProjectDetails() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Array<Project>>([]);
 
+  const userData: User = JSON.parse(sessionStorage.getItem("userData") || "{}");
   const {projectId} = useParams();
 
   if (projectId === undefined || +projectId < 1) {
@@ -39,10 +41,23 @@ function ProjectDetails() {
               <ProjectTable.Header />
               </thead>
               <tbody>
-                {projects.length > 0 && <ProjectTable key={projectId} projectData={projects[0]} />}
+              {
+                projects.map(project =>
+                  <ProjectTable key={projectId} projectData={project} />
+                )
+              }
               </tbody>
             </Table>
-            <Button onClick={editProjectData}>Edit Data</Button>
+            {
+              projects.map(project =>
+                (userData.id && project.manager.id === userData.id)
+                  && <Button
+                        key={projectId}
+                        variant="primary"
+                        onClick={editProjectData}
+                     >Edit Data</Button>
+              )
+            }
           </Col>
         </Row>
       </Container>
