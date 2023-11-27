@@ -19,11 +19,11 @@ async function getProjectData(req: Request, res: Response) {
         users.username AS project_manager_username, 
         users.email AS project_manager_email
       FROM projects
-      LEFT JOIN users 
+      LEFT JOIN users
         ON users.user_id = project_manager_id
       ${+req.query.projectId! !== -1 ? `WHERE project_id=$1` : ''}
   `;
-  const queryData: Array<any> = +req.query.projectId! !== -1 ? [req.query.projectId] : [];
+  const queryData: Array<any> = +req.query.projectId! !== -1 ? [+req.query.projectId!] : [];
   const dbRes: QueryResult = await db.query(queryString, queryData);
   res.status(200).json(dbRes.rows);
 }
@@ -44,7 +44,7 @@ async function insertProjectData(req: Request, res: Response) {
 
 async function updateProjectData(req: Request, res: Response) {
   const queryString: string = `
-    UPDATE users 
+    UPDATE projects 
     SET ${req.body.field}=$1, project_modified_at=CURRENT_TIMESTAMP 
     WHERE project_id=$2 
     RETURNING project_id AS id

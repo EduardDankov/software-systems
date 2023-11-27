@@ -1,7 +1,5 @@
-import {Button} from "react-bootstrap";
 import React from "react";
 
-import {formatKebabCase} from "../utils/format/string/formatKebabCase";
 import {Project} from "../models/project";
 
 interface ProjectTableProps {

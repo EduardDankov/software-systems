@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Col, Container, Row, Table} from "react-bootstrap";
 
 import {Project} from "../../models/project";
@@ -12,7 +12,9 @@ function Projects() {
     await fetchProjectData('/api/v1', -1, setProjects);
   };
 
-  void updateProjectList();
+  useEffect(() => {
+    void updateProjectList();
+  }, []);
 
   return (
     <div className="project">
@@ -26,7 +28,7 @@ function Projects() {
               </thead>
               <tbody>
                 {
-                  projects.map(project => <ProjectTable projectData={project} />)
+                  projects.map(project => <ProjectTable key={project.id} projectData={project} />)
                 }
               </tbody>
             </Table>
