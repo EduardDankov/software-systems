@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -10,6 +10,7 @@ import {Task} from "../../../models/task";
 function TaskDetails() {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState<Array<Task>>([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const userData: User = JSON.parse(sessionStorage.getItem("userData") || "{}");
   const {taskId} = useParams();
@@ -26,9 +27,9 @@ function TaskDetails() {
     navigate(`/task/${taskId}/edit`);
   }
 
-  useEffect(() => {
-    void updateTaskList();
-  }, []);
+  Promise.all([
+    updateTaskList()
+  ]).then(() => setIsDataLoaded(true));
 
   return (
     <div className="task-details">
@@ -42,22 +43,26 @@ function TaskDetails() {
               </thead>
               <tbody>
               {
-                tasks.map(task =>
-                  <TaskTable key={taskId} taskData={task} />
-                )
+                isDataLoaded
+                ? tasks.map(task =>
+                    <TaskTable key={taskId} taskData={task} />
+                  )
+                : <></>
               }
               </tbody>
             </Table>
             {
-              tasks.map(task =>
-                (userData.id && (task.assignee.id === userData.id || task.project.manager.id === userData.id))
-                  ? <Button
-                    key={taskId}
-                    variant="primary"
-                    onClick={editTaskData}
-                  >Edit Data</Button>
-                  : <></>
-              )
+              isDataLoaded
+                ? tasks.map(task =>
+                  (userData.id && (task.assignee.id === userData.id || task.project.manager.id === userData.id))
+                    ? <Button
+                      key={taskId}
+                      variant="primary"
+                      onClick={editTaskData}
+                    >Edit Data</Button>
+                    : <></>
+                )
+              : <></>
             }
             <Button variant="secondary" onClick={() => navigate(`/task`)}>Back</Button>
           </Col>

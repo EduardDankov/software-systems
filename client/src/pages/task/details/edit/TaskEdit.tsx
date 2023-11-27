@@ -39,9 +39,9 @@ function TaskEdit() {
     ]).then(() => setIsDataLoaded(true));
   };
 
-  useEffect(() => {
-    void updateTaskList();
-  }, []);
+  Promise.all([
+    updateTaskList()
+  ]).then(() => setIsDataLoaded(true));
 
   useEffect(() => {
     if (isDataChanged) {

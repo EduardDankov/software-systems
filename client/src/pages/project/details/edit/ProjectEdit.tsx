@@ -28,9 +28,9 @@ function ProjectEdit() {
     await fetchProjectData('/api/v1', +projectId!, setProjects);
   };
 
-  useEffect(() => {
-    void updateProjectList();
-  }, []);
+  void Promise.all([
+    updateProjectList()
+  ]);
 
   useEffect(() => {
     if (isDataChanged) {

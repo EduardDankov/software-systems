@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Button, Col, Container, Row, Table} from "react-bootstrap";
 
 import {Project} from "../../models/project";
@@ -9,14 +9,15 @@ import {useNavigate} from "react-router-dom";
 function Projects() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Array<Project>>([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const updateProjectList = async () => {
     await fetchProjectData('/api/v1', -1, setProjects);
   };
 
-  useEffect(() => {
-    void updateProjectList();
-  }, []);
+  Promise.all([
+    updateProjectList()
+  ]).then(() => setIsDataLoaded(true));
 
   return (
     <div className="project">
@@ -30,12 +31,14 @@ function Projects() {
               </thead>
               <tbody>
                 {
-                  projects.map(project =>
+                  isDataLoaded
+                  ? projects.map(project =>
                     <ProjectTable
                       key={project.id}
                       projectData={project}
                       onClick={() => navigate(`/project/${project.id}`)}
                     />)
+                  : <></>
                 }
               </tbody>
             </Table>

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 
@@ -9,14 +9,15 @@ import {Task} from "../../models/task";
 function Tasks() {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState<Array<Task>>([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const updateTaskList = async () => {
     await fetchTaskData('/api/v1', -1, setTasks);
   };
 
-  useEffect(() => {
-    void updateTaskList();
-  }, []);
+  Promise.all([
+    updateTaskList()
+  ]).then(() => setIsDataLoaded(true));
 
   return (
     <div className="task">
@@ -30,12 +31,14 @@ function Tasks() {
               </thead>
               <tbody>
               {
-                tasks.map(task =>
-                  <TaskTable
-                    key={task.id}
-                    taskData={task}
-                    onClick={() => navigate(`/task/${task.id}`)}
-                  />)
+                isDataLoaded
+                ? tasks.map(task =>
+                    <TaskTable
+                      key={task.id}
+                      taskData={task}
+                      onClick={() => navigate(`/task/${task.id}`)}
+                    />)
+                : <></>
               }
               </tbody>
             </Table>

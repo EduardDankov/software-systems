@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -14,6 +14,7 @@ function ProjectDetails() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Array<Project>>([]);
   const [tasks, setTasks] = useState<Array<Task>>([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const userData: User = JSON.parse(sessionStorage.getItem("userData") || "{}");
   const {projectId} = useParams();
@@ -34,10 +35,10 @@ function ProjectDetails() {
     navigate(`/project/${projectId}/edit`);
   }
 
-  useEffect(() => {
-    void updateProjectList();
-    void updateTaskList();
-  }, []);
+  Promise.all([
+    void updateProjectList(),
+    void updateTaskList()
+  ]).then(() => setIsDataLoaded(true));
 
   return (
     <div className="project-details">
@@ -51,22 +52,25 @@ function ProjectDetails() {
               </thead>
               <tbody>
               {
-                projects.map(project =>
-                  <ProjectTable key={projectId} projectData={project} />
-                )
+                isDataLoaded
+                ? projects.map(project =>
+                    <ProjectTable key={projectId} projectData={project} />
+                  )
+                : <></>
               }
               </tbody>
             </Table>
             {
-              projects.map(project =>
-                (userData.id && project.manager.id === userData.id)
-                  ? <Button
-                        key={projectId}
-                        variant="primary"
-                        onClick={editProjectData}
-                     >Edit Data</Button>
-                  : <></>
-              )
+              isDataLoaded
+                ? projects.map(project =>
+                  (userData.id && project.manager.id === userData.id)
+                    ? <Button
+                          key={projectId}
+                          variant="primary"
+                          onClick={editProjectData}
+                       >Edit Data</Button>
+                    : <></>
+                  ) : <></>
             }
             <Button variant="secondary" onClick={() => navigate(`/project`)}>Back</Button>
 
