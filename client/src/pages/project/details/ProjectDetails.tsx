@@ -60,11 +60,12 @@ function ProjectDetails() {
             {
               projects.map(project =>
                 (userData.id && project.manager.id === userData.id)
-                  && <Button
+                  ? <Button
                         key={projectId}
                         variant="primary"
                         onClick={editProjectData}
                      >Edit Data</Button>
+                  : <></>
               )
             }
             <Button variant="secondary" onClick={() => navigate(`/project`)}>Back</Button>
@@ -76,11 +77,22 @@ function ProjectDetails() {
               <tbody>
               {
                 tasks.map(task =>
-                  <TaskTable key={task.id} taskData={task} />
+                  <TaskTable
+                    key={task.id}
+                    taskData={task}
+                    onClick={() => navigate(`/task/${task.id}`)}
+                  />
                 )
               }
               </tbody>
             </Table>
+            {
+              projects.map(project =>
+                (userData.id && project.manager.id === userData.id)
+                ? <Button variant="primary" onClick={() => navigate(`/task/create`)}>New Task</Button>
+                : <></>
+              )
+            }
           </Col>
         </Row>
       </Container>

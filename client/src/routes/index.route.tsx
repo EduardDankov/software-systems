@@ -4,6 +4,7 @@ import {Home} from "../pages/Home";
 import {UserRouter} from "./user.route";
 import {ProjectRouter} from "./project.route";
 import {NotFound} from "../pages/error/NotFound";
+import {TaskRouter} from "./task.route";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/project/*",
     element: <ProjectRouter />
+  },
+  {
+    path: "/task/*",
+    element: <TaskRouter />
   },
   {
     path: "*",
