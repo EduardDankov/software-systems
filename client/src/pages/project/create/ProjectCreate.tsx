@@ -37,7 +37,7 @@ function ProjectCreate() {
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">
             <Form onSubmit={handleSubmit(handleCreation)}>
-              <h1 className="page-title">Create Project</h1>
+              <h1 className="page-title">Create a Project</h1>
               <Form.Group className="mb-3" controlId="controlProjectName">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
