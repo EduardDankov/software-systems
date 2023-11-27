@@ -81,10 +81,10 @@ async function insertTaskData(req: Request, res: Response) {
       task_name, 
       task_description, 
       task_priority,
-      project_id
+      project_id,
       assignee_id,
       task_deadline
-    ) VALUES ($1, $2, $3) 
+    ) VALUES ($1, $2, $3, $4, $5, $6) 
     RETURNING task_id AS id
   `;
   const queryValues = [
