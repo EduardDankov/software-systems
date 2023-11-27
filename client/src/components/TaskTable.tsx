@@ -9,7 +9,7 @@ interface TaskTableProps {
 }
 
 class TaskTable extends React.Component<TaskTableProps> {
-  static taskStatus: Array<string> = [
+  public static taskStatus: Array<string> = [
     'Created',
     'In process',
     'Delayed',
@@ -17,7 +17,7 @@ class TaskTable extends React.Component<TaskTableProps> {
     'Completed'
   ];
 
-  static taskPriority: Array<string> = [
+  public static taskPriority: Array<string> = [
     'Low',
     'Normal',
     'High',

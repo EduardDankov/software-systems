@@ -6,8 +6,35 @@ import {LogInCredentials} from "../pages/user/login/LogIn";
 import {RegisterCredentials} from "../pages/user/register/Register";
 import {User} from "../models/user";
 
+type UserServerData = {
+  user_id: number;
+  username: string;
+  email: string;
+};
+
 function fetchUserCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
   fetchCount(apiUrl, 'user', dispatch);
+}
+
+async function fetchUserData(
+  apiUrl: string,
+  userId: number,
+  dispatch: React.Dispatch<React.SetStateAction<Array<User>>>
+): Promise<Array<User>> {
+  const users: Array<User> = [];
+  await axios
+    .get(`${apiUrl}/user/data`, { params: {userId} })
+    .then((res: AxiosResponse) => {
+      res.data.forEach((user: UserServerData) => {
+        users.push({
+          id: user.user_id,
+          username: user.username,
+          email: user.email
+        });
+      });
+      dispatch(users);
+    });
+  return users;
 }
 
 async function fetchUserLogin(
@@ -83,6 +110,7 @@ async function fetchUpdateUser(
 
 export {
   fetchUserCount,
+  fetchUserData,
   fetchIsEmailTaken,
   fetchUserLogin,
   fetchUserRegister,

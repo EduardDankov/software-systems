@@ -2,13 +2,14 @@ import {Router} from "express";
 import {
   checkCredentials,
   checkIsEmailTaken,
-  getCount,
+  getCount, getUserData,
   insertCredentials,
   updateCredentials
 } from "../controllers/user.controller";
 
 const userRouter = Router();
 
+userRouter.get('/data', getUserData);
 userRouter.get('/count', getCount);
 userRouter.get('/email-taken', checkIsEmailTaken);
 

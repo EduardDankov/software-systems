@@ -1,9 +1,23 @@
 import {Request, Response} from "express";
-import {QueryArrayConfig, QueryResult} from "pg";
+import {QueryResult} from "pg";
 import {db} from "../config/db";
 
 async function getCount(req: Request, res: Response) {
   const dbRes: QueryResult = await db.query('SELECT COUNT(*) FROM users');
+  res.status(200).json(dbRes.rows);
+}
+
+async function getUserData(req: Request, res: Response) {
+  const queryString: string = `
+      SELECT 
+        user_id,
+        username,
+        email
+      FROM users
+      ${+req.query.userId! !== -1 ? `WHERE user_id=$1` : ''}
+  `;
+  const queryData: Array<any> = +req.query.userId! !== -1 ? [+req.query.userId!] : [];
+  const dbRes: QueryResult = await db.query(queryString, queryData);
   res.status(200).json(dbRes.rows);
 }
 
@@ -34,6 +48,7 @@ async function updateCredentials(req: Request, res: Response) {
 
 export {
   getCount,
+  getUserData,
   checkIsEmailTaken,
   checkCredentials,
   insertCredentials,
