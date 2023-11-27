@@ -118,6 +118,7 @@ function ProjectEdit() {
                     }
                   </Form.Group>
                   <Button variant="primary" type="submit">Save</Button>
+                  <Button variant="secondary" onClick={() => navigate(`/project/${projectId}`)}>Back</Button>
                 </Form>
               )
             }

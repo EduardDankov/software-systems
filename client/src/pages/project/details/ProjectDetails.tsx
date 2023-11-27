@@ -58,6 +58,7 @@ function ProjectDetails() {
                      >Edit Data</Button>
               )
             }
+            <Button variant="secondary" onClick={() => navigate(`/project`)}>Back</Button>
           </Col>
         </Row>
       </Container>
