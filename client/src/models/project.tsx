@@ -9,4 +9,4 @@ interface Project {
   modifiedAt: Date;
 }
 
-export { Project };
+export type {Project};
