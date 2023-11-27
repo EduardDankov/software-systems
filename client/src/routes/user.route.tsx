@@ -4,7 +4,7 @@ import {LogIn} from "../pages/user/login/LogIn";
 import {LogOut} from "../pages/user/logout/LogOut";
 import {Register} from "../pages/user/register/Register";
 import {NotFound} from "../pages/error/NotFound";
-import {UserCabinet} from "../pages/user/User";
+import {UserCabinet} from "../pages/user/UserCabinet.tsx";
 
 function UserRouter() {
   return (
