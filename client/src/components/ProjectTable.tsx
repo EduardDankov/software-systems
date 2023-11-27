@@ -1,9 +1,11 @@
-import React from "react";
+import React, {MouseEventHandler} from "react";
 
 import {Project} from "../models/project";
+import {Button} from "react-bootstrap";
 
 interface ProjectTableProps {
-  projectData: Project
+  projectData: Project,
+  onClick?: MouseEventHandler
 }
 
 class ProjectTable extends React.Component<ProjectTableProps> {
@@ -21,6 +23,11 @@ class ProjectTable extends React.Component<ProjectTableProps> {
         <td>{project.manager.username} &lt;{project.manager.email}&gt;</td>
         <td>{project.createdAt.toDateString()}</td>
         <td>{project.modifiedAt.toDateString()}</td>
+        {this.props.onClick &&
+          <td>
+            <Button onClick={this.props.onClick} variant="primary">Details</Button>
+          </td>
+        }
       </tr>
     );
   }

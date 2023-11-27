@@ -4,8 +4,10 @@ import {Col, Container, Row, Table} from "react-bootstrap";
 import {Project} from "../../models/project";
 import {fetchProjectData} from "../../controllers/project.controller.tsx";
 import {ProjectTable} from "../../components/ProjectTable.tsx";
+import {useNavigate} from "react-router-dom";
 
 function Projects() {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState<Array<Project>>([]);
 
   const updateProjectList = async () => {
@@ -28,7 +30,12 @@ function Projects() {
               </thead>
               <tbody>
                 {
-                  projects.map(project => <ProjectTable key={project.id} projectData={project} />)
+                  projects.map(project =>
+                    <ProjectTable
+                      key={project.id}
+                      projectData={project}
+                      onClick={() => navigate(`/project/${project.id}`)}
+                    />)
                 }
               </tbody>
             </Table>
