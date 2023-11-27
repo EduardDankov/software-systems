@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Col, Container, Row, Table} from "react-bootstrap";
+import {Button, Col, Container, Row, Table} from "react-bootstrap";
 
 import {Project} from "../../models/project";
 import {fetchProjectData} from "../../controllers/project.controller.tsx";
@@ -39,6 +39,11 @@ function Projects() {
                 }
               </tbody>
             </Table>
+            {
+              (+(sessionStorage.getItem('isLoggedIn') ?? 0))
+                ? <Button variant="primary" onClick={() => navigate(`/project/create`)}>New Project</Button>
+                : <></>
+            }
           </Col>
         </Row>
       </Container>

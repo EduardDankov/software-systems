@@ -49,13 +49,15 @@ async function fetchProjectData(
 
 async function fetchProjectCreate(
   apiUrl: string,
-  data: Project,
-  dispatch: React.Dispatch<React.SetStateAction<boolean>>
+  name: string,
+  description: string,
+  managerId: number,
+  dispatch: React.Dispatch<React.SetStateAction<number>>
 ) {
   await axios
-    .post(`${apiUrl}/project/create`, data)
+    .post(`${apiUrl}/project/create`, {name, description, managerId})
     .then((res: AxiosResponse) => {
-      dispatch(+res.data[0].id > 0);
+      dispatch(+res.data[0].id);
     });
 }
 
