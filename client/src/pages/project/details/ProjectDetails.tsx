@@ -83,7 +83,9 @@ function ProjectDetails() {
               <tbody>
               {
                 isDataLoaded
-                  ? tasks.map(task =>
+                  ? tasks
+                    .sort((a: Task, b: Task) => a.deadline > b.deadline ? 1 : -1)
+                    .map(task =>
                       <TaskTable
                         key={task.id}
                         taskData={task}
