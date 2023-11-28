@@ -15,8 +15,8 @@ type ProjectServerData = {
   project_modified_at: string;
 };
 
-function fetchProjectCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
-  fetchCount(apiUrl, 'project', dispatch);
+async function fetchProjectCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
+  await fetchCount(apiUrl, 'project', dispatch);
 }
 
 async function fetchProjectData(

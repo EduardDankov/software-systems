@@ -12,8 +12,8 @@ type UserServerData = {
   email: string;
 };
 
-function fetchUserCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
-  fetchCount(apiUrl, 'user', dispatch);
+async function fetchUserCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
+  await fetchCount(apiUrl, 'user', dispatch);
 }
 
 async function fetchUserData(

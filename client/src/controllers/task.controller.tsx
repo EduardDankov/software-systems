@@ -26,8 +26,8 @@ type TaskServerData = {
   task_deadline: string;
 };
 
-function fetchTaskCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
-  fetchCount(apiUrl, 'task', dispatch);
+async function fetchTaskCount(apiUrl: string, dispatch: React.Dispatch<React.SetStateAction<number>>) {
+  await fetchCount(apiUrl, 'task', dispatch);
 }
 
 async function fetchTaskData(
