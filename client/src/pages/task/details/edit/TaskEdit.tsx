@@ -11,6 +11,7 @@ import {User} from "../../../../models/user";
 import {Project} from "../../../../models/project";
 import {Task} from "../../../../models/task";
 import {Menu} from "../../../../components/Menu";
+import {toLocalISOString} from "../../../../utils/format/date/toLocalISOString";
 
 function TaskEdit() {
   const navigate = useNavigate();
@@ -261,10 +262,10 @@ function TaskEdit() {
                     : <>Loading...</>
                   }
                   <Form.Group className="mb-3" controlId="controlTaskDeadline">
-                    <Form.Label>Deadline</Form.Label>
+                    <Form.Label>Deadline (UTC)</Form.Label>
                     <Form.Control
                       type="date"
-                      defaultValue={task.deadline.toISOString().split('T')[0]}
+                      defaultValue={toLocalISOString(task.deadline).split('T')[0]}
                       { ...register("taskDeadlineDate", {required: true}) }
                       aria-invalid={errors.taskDeadlineDate ? "true" : undefined}
                     />
@@ -279,7 +280,7 @@ function TaskEdit() {
                     <Form.Control
                       type="time"
                       step="any"
-                      defaultValue={task.deadline.toISOString().split('T')[1].split('.')[0]}
+                      defaultValue={toLocalISOString(task.deadline).split('T')[1].split('.')[0]}
                       { ...register("taskDeadlineTime", {required: true}) }
                       aria-invalid={errors.taskDeadlineTime ? "true" : undefined}
                     />
@@ -290,7 +291,7 @@ function TaskEdit() {
                           && <Form.Text className="text-danger">This field is required.</Form.Text>
                         )
                         : <Form.Text className="text-muted">
-                          The task deadline defines the timestamp, until when the task must be completed.
+                          The task deadline defines the timestamp (in UTC timezone), until when the task must be completed.
                         </Form.Text>
                     }
                   </Form.Group>

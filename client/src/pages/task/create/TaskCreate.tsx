@@ -173,7 +173,7 @@ function TaskCreate() {
                   : <>Loading...</>
               }
               <Form.Group className="mb-3" controlId="controlTaskDeadline">
-                <Form.Label>Deadline</Form.Label>
+                <Form.Label>Deadline (UTC)</Form.Label>
                 <Form.Control
                   type="date"
                   defaultValue={new Date(Date.now() + 28 * 86400).toISOString().split('T')[0]}
@@ -202,7 +202,7 @@ function TaskCreate() {
                       && <Form.Text className="text-danger">This field is required.</Form.Text>
                     )
                     : <Form.Text className="text-muted">
-                      The task deadline defines the timestamp, until when the task must be completed.
+                      The task deadline defines the timestamp (in UTC timezone), until when the task must be completed.
                     </Form.Text>
                 }
               </Form.Group>
