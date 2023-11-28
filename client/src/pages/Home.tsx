@@ -2,10 +2,11 @@ import './Home.scss';
 
 // Libraries
 import {useEffect, useState} from "react";
-import {Table} from "react-bootstrap";
+import {Col, Container, Row, Table} from "react-bootstrap";
 
 // Components
 import {EntityCount} from "../components/EntityCount";
+import {Menu} from "../components/Menu";
 
 // Controllers
 import {fetchUserCount} from "../controllers/user.controller";
@@ -35,45 +36,52 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <Table className="greeting align-middle" bordered>
-        <thead>
-        <EntityCount.Header />
-        </thead>
-        <tbody>
-        <EntityCount
-          entity="User"
-          count={userCount}
-          onClick={() => fetchUserCount(urlProxy, setUserCount)}
-        />
-        <EntityCount
-          entity="Project"
-          count={projectCount}
-          onClick={() => fetchProjectCount(urlProxy, setProjectCount)}
-        />
-        <EntityCount
-          entity="Task"
-          count={taskCount}
-          onClick={() => fetchTaskCount(urlProxy, setTaskCount)}
-        />
-        <EntityCount
-          entity="File"
-          count={fileCount}
-          onClick={() => fetchFileCount(urlProxy, setFileCount)}
-        />
-        <EntityCount
-          entity="Bug Report"
-          count={bugReportCount}
-          onClick={() => fetchBugReportCount(urlProxy, setBugReportCount)}
-        />
-        <EntityCount
-          entity="Message"
-          count={messageCount}
-          onClick={() => fetchMessageCount(urlProxy, setMessageCount)}
-        />
-        </tbody>
-      </Table>
-    </>
+    <div className="home">
+      <Menu />
+      <Container className="container-md">
+        <Row className="justify-content-md-center">
+          <Col md="8" xl="6">
+            <Table className="greeting align-middle" bordered>
+              <thead>
+                <EntityCount.Header />
+              </thead>
+              <tbody>
+              <EntityCount
+                entity="User"
+                count={userCount}
+                onClick={() => fetchUserCount(urlProxy, setUserCount)}
+              />
+              <EntityCount
+                entity="Project"
+                count={projectCount}
+                onClick={() => fetchProjectCount(urlProxy, setProjectCount)}
+              />
+              <EntityCount
+                entity="Task"
+                count={taskCount}
+                onClick={() => fetchTaskCount(urlProxy, setTaskCount)}
+              />
+              <EntityCount
+                entity="File"
+                count={fileCount}
+                onClick={() => fetchFileCount(urlProxy, setFileCount)}
+              />
+              <EntityCount
+                entity="Bug Report"
+                count={bugReportCount}
+                onClick={() => fetchBugReportCount(urlProxy, setBugReportCount)}
+              />
+              <EntityCount
+                entity="Message"
+                count={messageCount}
+                onClick={() => fetchMessageCount(urlProxy, setMessageCount)}
+              />
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 

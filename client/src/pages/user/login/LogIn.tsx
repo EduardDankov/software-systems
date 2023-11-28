@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 import {fetchUserLogin} from "../../../controllers/user.controller";
 import {User} from "../../../models/user";
+import {Menu} from "../../../components/Menu";
 
 type LogInCredentials = {
   email: string;
@@ -48,6 +49,7 @@ function LogIn() {
 
   return (
     <div className="user-login">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">

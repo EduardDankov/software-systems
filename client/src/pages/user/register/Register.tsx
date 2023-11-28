@@ -1,8 +1,10 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {FieldValues, useForm} from "react-hook-form";
-import {fetchUserRegister} from "../../../controllers/user.controller.tsx";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
+
+import {fetchUserRegister} from "../../../controllers/user.controller";
+import {Menu} from "../../../components/Menu";
 
 type RegisterCredentials = {
   username: string;
@@ -42,6 +44,7 @@ function Register() {
 
   return (
     <div className="user-register">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">

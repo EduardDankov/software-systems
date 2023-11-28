@@ -9,6 +9,7 @@ import { TaskTable } from "../../../components/TaskTable";
 import {Project} from "../../../models/project";
 import {User} from "../../../models/user";
 import {Task} from "../../../models/task";
+import {Menu} from "../../../components/Menu";
 
 function ProjectDetails() {
   const navigate = useNavigate();
@@ -42,13 +43,14 @@ function ProjectDetails() {
 
   return (
     <div className="project-details">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="12" xl="9">
             <h1 className="page-title">Project #{projectId}</h1>
             <Table className="align-middle" bordered>
               <thead>
-              <ProjectTable.Header />
+                <ProjectTable.Header />
               </thead>
               <tbody>
               {
@@ -56,7 +58,7 @@ function ProjectDetails() {
                 ? projects.map(project =>
                     <ProjectTable key={projectId} projectData={project} />
                   )
-                : <></>
+                : <>Loading...</>
               }
               </tbody>
             </Table>
@@ -70,7 +72,7 @@ function ProjectDetails() {
                           onClick={editProjectData}
                        >Edit Data</Button>
                     : <></>
-                  ) : <></>
+              ) : <></>
             }
             <Button variant="secondary" onClick={() => navigate(`/project`)}>Back</Button>
 
@@ -80,22 +82,26 @@ function ProjectDetails() {
               </thead>
               <tbody>
               {
-                tasks.map(task =>
-                  <TaskTable
-                    key={task.id}
-                    taskData={task}
-                    onClick={() => navigate(`/task/${task.id}`)}
-                  />
-                )
+                isDataLoaded
+                  ? tasks.map(task =>
+                      <TaskTable
+                        key={task.id}
+                        taskData={task}
+                        onClick={() => navigate(`/task/${task.id}`)}
+                      />
+                    )
+                  : <>Loading...</>
               }
               </tbody>
             </Table>
             {
-              projects.map(project =>
-                (userData.id && project.manager.id === userData.id)
-                ? <Button variant="primary" onClick={() => navigate(`/task/create`)}>New Task</Button>
+              isDataLoaded
+                ? projects.map(project =>
+                    (userData.id && project.manager.id === userData.id)
+                    ? <Button variant="primary" onClick={() => navigate(`/task/create`)}>New Task</Button>
+                    : <></>
+                  )
                 : <></>
-              )
             }
           </Col>
         </Row>

@@ -6,6 +6,7 @@ import {fetchTaskData} from "../../../controllers/task.controller";
 import {TaskTable} from "../../../components/TaskTable";
 import {User} from "../../../models/user";
 import {Task} from "../../../models/task";
+import {Menu} from "../../../components/Menu";
 
 function TaskDetails() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function TaskDetails() {
 
   return (
     <div className="task-details">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="12" xl="9">
@@ -47,7 +49,7 @@ function TaskDetails() {
                 ? tasks.map(task =>
                     <TaskTable key={taskId} taskData={task} />
                   )
-                : <></>
+                : <>Loading...</>
               }
               </tbody>
             </Table>

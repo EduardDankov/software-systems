@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {TaskTable} from "../../components/TaskTable";
 import {fetchTaskData} from "../../controllers/task.controller";
 import {Task} from "../../models/task";
+import {Menu} from "../../components/Menu";
 
 function Tasks() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function Tasks() {
 
   return (
     <div className="task">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="12" xl="9">
@@ -38,7 +40,7 @@ function Tasks() {
                       taskData={task}
                       onClick={() => navigate(`/task/${task.id}`)}
                     />)
-                : <></>
+                : <>Loading...</>
               }
               </tbody>
             </Table>

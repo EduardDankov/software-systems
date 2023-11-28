@@ -4,7 +4,8 @@ import {FieldValues, useForm} from "react-hook-form";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
 import {User} from "../../models/user";
-import {fetchIsEmailTaken, fetchUpdateUser} from "../../controllers/user.controller.tsx";
+import {fetchIsEmailTaken, fetchUpdateUser} from "../../controllers/user.controller";
+import {Menu} from "../../components/Menu";
 
 function UserCabinet() {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ function UserCabinet() {
 
   return (
     <div className="user">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">

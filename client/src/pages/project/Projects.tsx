@@ -5,6 +5,7 @@ import {Project} from "../../models/project";
 import {fetchProjectData} from "../../controllers/project.controller.tsx";
 import {ProjectTable} from "../../components/ProjectTable.tsx";
 import {useNavigate} from "react-router-dom";
+import {Menu} from "../../components/Menu";
 
 function Projects() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function Projects() {
 
   return (
     <div className="project">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="12" xl="9">
@@ -38,7 +40,7 @@ function Projects() {
                       projectData={project}
                       onClick={() => navigate(`/project/${project.id}`)}
                     />)
-                  : <></>
+                  : <>Loading...</>
                 }
               </tbody>
             </Table>

@@ -10,6 +10,7 @@ import {TaskTable} from "../../../../components/TaskTable";
 import {User} from "../../../../models/user";
 import {Project} from "../../../../models/project";
 import {Task} from "../../../../models/task";
+import {Menu} from "../../../../components/Menu";
 
 function TaskEdit() {
   const navigate = useNavigate();
@@ -117,11 +118,13 @@ function TaskEdit() {
 
   return(
     <div className="task-edit">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">
             {
-              tasks.map(task =>
+              isDataLoaded
+              ? tasks.map(task =>
                 <Form key={taskId} onSubmit={handleSubmit(changeData)}>
                   <h1 className="page-title">Edit Task #{taskId}</h1>
                   {
@@ -244,7 +247,7 @@ function TaskEdit() {
                           >
                             {
                               users.map((user) =>
-                                <option key={user.id} value={user.id}>{user.username}</option>
+                                <option key={user.id} value={user.id}>{user.username} &lt;{user.email}&gt;</option>
                               )
                             }
                           </Form.Select>
@@ -255,7 +258,7 @@ function TaskEdit() {
                           }
                         </Form.Group>
                       </>
-                    : <></>
+                    : <>Loading...</>
                   }
                   <Form.Group className="mb-3" controlId="controlTaskDeadline">
                     <Form.Label>Deadline</Form.Label>
@@ -296,6 +299,7 @@ function TaskEdit() {
                   <Button variant="secondary" onClick={() => navigate(`/task/${taskId}`)}>Back</Button>
                 </Form>
               )
+              : <>Loading...</>
             }
           </Col>
         </Row>

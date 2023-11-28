@@ -9,6 +9,7 @@ import {fetchTaskCreate} from "../../../controllers/task.controller";
 import {fetchProjectData} from "../../../controllers/project.controller";
 import {fetchUserData} from "../../../controllers/user.controller";
 import {TaskTable} from "../../../components/TaskTable";
+import {Menu} from "../../../components/Menu";
 
 function TaskCreate() {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ function TaskCreate() {
 
   return(
     <div className="task-edit">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">
@@ -157,7 +159,7 @@ function TaskCreate() {
                       >
                         {
                           users.map((user) =>
-                            <option key={user.id} value={user.id}>{user.username}</option>
+                            <option key={user.id} value={user.id}>{user.username} &lt;{user.email}&gt;</option>
                           )
                         }
                       </Form.Select>
@@ -168,7 +170,7 @@ function TaskCreate() {
                       }
                     </Form.Group>
                   </>
-                  : <></>
+                  : <>Loading...</>
               }
               <Form.Group className="mb-3" controlId="controlTaskDeadline">
                 <Form.Label>Deadline</Form.Label>

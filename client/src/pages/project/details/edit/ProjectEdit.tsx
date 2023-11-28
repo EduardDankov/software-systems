@@ -1,16 +1,18 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {FieldValues, useForm} from "react-hook-form";
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
 import {Project} from "../../../../models/project";
 import {fetchProjectData, fetchProjectUpdate} from "../../../../controllers/project.controller";
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {FieldValues, useForm} from "react-hook-form";
-import {User} from "../../../../models/user.tsx";
+import {User} from "../../../../models/user";
+import {Menu} from "../../../../components/Menu";
 
 function ProjectEdit() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Array<Project>>([]);
   const [isDataChanged, setIsDataChanged] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,7 +32,7 @@ function ProjectEdit() {
 
   void Promise.all([
     updateProjectList()
-  ]);
+  ]).then(() => setIsDataLoaded(true));
 
   useEffect(() => {
     if (isDataChanged) {
@@ -63,11 +65,13 @@ function ProjectEdit() {
 
   return(
     <div className="project-edit">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">
             {
-              projects.map(project =>
+              isDataLoaded
+              ? projects.map(project =>
                 <Form key={projectId} onSubmit={handleSubmit(changeData)}>
                   <h1 className="page-title">Edit Project #{projectId}</h1>
                   {
@@ -121,6 +125,7 @@ function ProjectEdit() {
                   <Button variant="secondary" onClick={() => navigate(`/project/${projectId}`)}>Back</Button>
                 </Form>
               )
+              : <>Loading...</>
             }
           </Col>
         </Row>

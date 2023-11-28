@@ -4,7 +4,8 @@ import {useEffect, useState} from "react";
 import {FieldValues, useForm} from "react-hook-form";
 
 import {User} from "../../../models/user";
-import {fetchProjectCreate} from "../../../controllers/project.controller.tsx";
+import {fetchProjectCreate} from "../../../controllers/project.controller";
+import {Menu} from "../../../components/Menu";
 
 function ProjectCreate() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function ProjectCreate() {
 
   return (
     <div className="project-create">
+      <Menu />
       <Container className="container-md">
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">
