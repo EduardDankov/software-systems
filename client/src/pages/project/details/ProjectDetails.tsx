@@ -66,11 +66,19 @@ function ProjectDetails() {
               isDataLoaded
                 ? projects.map(project =>
                   (userData.id && project.manager.id === userData.id)
-                    ? <Button
-                          key={projectId}
+                    ?
+                      <>
+                        <Button
+                          key={(+projectId! || 0) + 100}
                           variant="primary"
                           onClick={editProjectData}
-                       >Edit Data</Button>
+                        >Edit Data</Button>
+                        <Button
+                          key={(+projectId! || 0) + 101}
+                          variant="danger"
+                          onClick={() => navigate(`/project/delete/${projectId}`)}
+                        >Delete Project</Button>
+                      </>
                     : <></>
               ) : <></>
             }

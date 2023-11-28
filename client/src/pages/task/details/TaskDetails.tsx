@@ -57,11 +57,18 @@ function TaskDetails() {
               isDataLoaded
                 ? tasks.map(task =>
                   (userData.id && (task.assignee.id === userData.id || task.project.manager.id === userData.id))
-                    ? <Button
-                      key={taskId}
-                      variant="primary"
-                      onClick={editTaskData}
-                    >Edit Data</Button>
+                    ? <>
+                        <Button
+                          key={(+taskId! || 0) + 100}
+                          variant="primary"
+                          onClick={editTaskData}
+                        >Edit Data</Button>
+                        <Button
+                          key={(+taskId! || 0) + 101}
+                          variant="danger"
+                          onClick={() => navigate(`/task/delete/${taskId}`)}
+                        >Delete Task</Button>
+                      </>
                     : <></>
                 )
               : <></>
