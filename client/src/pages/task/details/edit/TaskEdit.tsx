@@ -264,7 +264,6 @@ function TaskEdit() {
                     <Form.Label>Deadline</Form.Label>
                     <Form.Control
                       type="date"
-                      placeholder={task.deadline.toISOString()}
                       defaultValue={task.deadline.toISOString().split('T')[0]}
                       { ...register("taskDeadlineDate", {required: true}) }
                       aria-invalid={errors.taskDeadlineDate ? "true" : undefined}
@@ -279,7 +278,7 @@ function TaskEdit() {
                     }
                     <Form.Control
                       type="time"
-                      placeholder={task.deadline.toISOString()}
+                      step="any"
                       defaultValue={task.deadline.toISOString().split('T')[1].split('.')[0]}
                       { ...register("taskDeadlineTime", {required: true}) }
                       aria-invalid={errors.taskDeadlineTime ? "true" : undefined}
