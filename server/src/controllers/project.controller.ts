@@ -54,12 +54,17 @@ async function updateProjectData(req: Request, res: Response) {
 }
 
 async function deleteProjectData(req: Request, res: Response) {
-  const queryString: string = `
+  const projectQueryString: string = `
     DELETE FROM projects 
     WHERE project_id=$1 
     RETURNING project_id AS id
   `;
-  const dbRes: QueryResult = await db.query(queryString, [req.body.projectId]);
+  const tasksQueryString: string = `
+    DELETE FROM tasks 
+    WHERE project_id=$1
+  `;
+  const dbRes: QueryResult = await db.query(projectQueryString, [req.body.projectId]);
+  await db.query(tasksQueryString, [req.body.projectId]);
   res.status(200).json(dbRes.rows);
 }
 
