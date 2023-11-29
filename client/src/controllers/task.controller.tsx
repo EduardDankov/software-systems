@@ -148,10 +148,24 @@ async function fetchTaskUpdate(
   return result;
 }
 
+async function fetchTaskDelete(
+  apiUrl: string,
+  taskId: number
+) {
+  let result: boolean = false;
+  await axios
+    .post(`${apiUrl}/task/delete`, {taskId})
+    .then((res: AxiosResponse) => {
+      result = res.data[0].id === taskId;
+    });
+  return result;
+}
+
 export {
   fetchTaskCount,
   fetchTaskData,
   fetchTaskDataByProject,
   fetchTaskCreate,
-  fetchTaskUpdate
+  fetchTaskUpdate,
+  fetchTaskDelete
 };

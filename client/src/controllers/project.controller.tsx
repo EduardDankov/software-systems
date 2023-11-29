@@ -76,9 +76,23 @@ async function fetchProjectUpdate(
   return result;
 }
 
+async function fetchProjectDelete(
+  apiUrl: string,
+  projectId: number
+) {
+  let result: boolean = false;
+  await axios
+    .post(`${apiUrl}/project/delete`, {projectId})
+    .then((res: AxiosResponse) => {
+      result = res.data[0].id === projectId;
+    });
+  return result;
+}
+
 export {
   fetchProjectCount,
   fetchProjectData,
   fetchProjectCreate,
-  fetchProjectUpdate
+  fetchProjectUpdate,
+  fetchProjectDelete
 };

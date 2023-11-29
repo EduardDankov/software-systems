@@ -58,7 +58,7 @@ async function fetchUserLogin(
     });
 }
 
-async function fetchIsEmailTaken(
+async function fetchUserIsEmailTaken(
   apiUrl: string,
   email: string,
   dispatch: React.Dispatch<React.SetStateAction<boolean>>
@@ -81,7 +81,7 @@ async function fetchUserRegister(
     emailTaken: React.Dispatch<React.SetStateAction<boolean>>
   }
 ) {
-  await fetchIsEmailTaken(apiUrl, credentials.email, errorDispatches.emailTaken)
+  await fetchUserIsEmailTaken(apiUrl, credentials.email, errorDispatches.emailTaken)
     .then(async (res: boolean) => {
       if (!res) {
         await axios
@@ -93,7 +93,7 @@ async function fetchUserRegister(
     });
 }
 
-async function fetchUpdateUser(
+async function fetchUserUpdate(
   apiUrl: string,
   userId: number,
   field: string,
@@ -108,11 +108,25 @@ async function fetchUpdateUser(
   return result;
 }
 
+async function fetchUserDelete(
+  apiUrl: string,
+  userId: number
+) {
+  let result: boolean = false;
+  await axios
+    .post(`${apiUrl}/user/delete`, {userId})
+    .then((res: AxiosResponse) => {
+      result = res.data[0].id === userId;
+    });
+  return result;
+}
+
 export {
   fetchUserCount,
   fetchUserData,
-  fetchIsEmailTaken,
+  fetchUserIsEmailTaken,
   fetchUserLogin,
   fetchUserRegister,
-  fetchUpdateUser
+  fetchUserUpdate,
+  fetchUserDelete
 };
