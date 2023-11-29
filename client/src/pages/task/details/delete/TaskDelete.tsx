@@ -3,10 +3,10 @@ import {useEffect, useState} from "react";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {useForm} from "react-hook-form";
 
-import {Task} from "../../../models/task";
-import {User} from "../../../models/user";
-import {fetchTaskData, fetchTaskDelete} from "../../../controllers/task.controller";
-import {Menu} from "../../../components/Menu";
+import {Task} from "../../../../models/task.tsx";
+import {User} from "../../../../models/user.tsx";
+import {fetchTaskData, fetchTaskDelete} from "../../../../controllers/task.controller.tsx";
+import {Menu} from "../../../../components/Menu.tsx";
 
 function TaskDelete() {
   const navigate = useNavigate();

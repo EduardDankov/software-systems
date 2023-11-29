@@ -4,7 +4,7 @@ import {Tasks} from "../pages/task/Tasks";
 import {TaskCreate} from "../pages/task/create/TaskCreate";
 import {TaskDetails} from "../pages/task/details/TaskDetails";
 import {TaskEdit} from "../pages/task/details/edit/TaskEdit";
-import {TaskDelete} from "../pages/task/delete/TaskDelete";
+import {TaskDelete} from "../pages/task/details/delete/TaskDelete";
 import {NotFound} from "../pages/error/NotFound";
 
 function TaskRouter() {

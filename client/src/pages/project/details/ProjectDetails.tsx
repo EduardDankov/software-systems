@@ -76,7 +76,7 @@ function ProjectDetails() {
                         <Button
                           key={(+projectId! || 0) + 101}
                           variant="danger"
-                          onClick={() => navigate(`/project/delete/${projectId}`)}
+                          onClick={() => navigate(`/project/${projectId}/delete`)}
                         >Delete Project</Button>
                       </>
                     : <></>
