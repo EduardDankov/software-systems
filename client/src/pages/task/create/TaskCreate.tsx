@@ -37,8 +37,10 @@ function TaskCreate() {
   ]).then(() => setIsDataLoaded(true));
 
   const handleCreation = async (data: FieldValues) => {
-    if (!userData.id || !projects.filter(project => project.manager.id === userData.id)) {
-      window.reportError(new Error("You have to log in as a project manager to create a task."));
+    if (!userData.id
+      || !projects.some(project => project.id === +data?.taskProject && project.manager.id === userData.id)
+    ) {
+      window.reportError(new Error("You have to log in as a project manager to create a task for this project."));
     } else {
       await fetchTaskCreate(
         '/api/v1',
