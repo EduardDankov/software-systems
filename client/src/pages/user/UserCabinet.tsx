@@ -4,7 +4,7 @@ import {FieldValues, useForm} from "react-hook-form";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
 import {User} from "../../models/user";
-import {fetchIsEmailTaken, fetchUpdateUser} from "../../controllers/user.controller";
+import {fetchUserIsEmailTaken, fetchUserUpdate} from "../../controllers/user.controller";
 import {Menu} from "../../components/Menu";
 
 function UserCabinet() {
@@ -29,7 +29,7 @@ function UserCabinet() {
 
   const changeData = async (data: FieldValues) => {
     if (userData.username !== data?.username) {
-      await fetchUpdateUser('/api/v1', userData.id, 'username', data?.username)
+      await fetchUserUpdate('/api/v1', userData.id, 'username', data?.username)
         .then((res: boolean) => {
           if (res) {
             setIsDataChanged(true);
@@ -38,10 +38,10 @@ function UserCabinet() {
         });
     }
     if (userData.email !== data?.email) {
-      await fetchIsEmailTaken('/api/v1', data?.email, setIsEmailTaken)
+      await fetchUserIsEmailTaken('/api/v1', data?.email, setIsEmailTaken)
         .then(async (emailRes: boolean) => {
           if (!emailRes) {
-            await fetchUpdateUser('/api/v1', userData.id, 'email', data?.email)
+            await fetchUserUpdate('/api/v1', userData.id, 'email', data?.email)
               .then((res: boolean) => {
                 if (res) {
                   setIsDataChanged(true);
@@ -52,7 +52,7 @@ function UserCabinet() {
         })
     }
     if (data?.password !== '') {
-      await fetchUpdateUser('/api/v1', userData.id, 'password', data?.password)
+      await fetchUserUpdate('/api/v1', userData.id, 'password', data?.password)
         .then((res: boolean) => {
           if (res) {
             setIsDataChanged(true);
