@@ -53,9 +53,20 @@ async function updateProjectData(req: Request, res: Response) {
   res.status(200).json(dbRes.rows);
 }
 
+async function deleteProjectData(req: Request, res: Response) {
+  const queryString: string = `
+    DELETE FROM projects 
+    WHERE project_id=$1 
+    RETURNING project_id AS id
+  `;
+  const dbRes: QueryResult = await db.query(queryString, [req.body.projectId]);
+  res.status(200).json(dbRes.rows);
+}
+
 export {
   getCount,
   getProjectData,
   insertProjectData,
-  updateProjectData
+  updateProjectData,
+  deleteProjectData
 };

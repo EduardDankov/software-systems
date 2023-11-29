@@ -1,5 +1,6 @@
 import {Router} from "express";
 import {
+  deleteTaskData,
   getCount,
   getTaskData,
   getTaskDataByProject,
@@ -15,5 +16,6 @@ taskRouter.get('/count', getCount);
 
 taskRouter.post('/create', insertTaskData);
 taskRouter.post('/update', updateTaskData);
+taskRouter.post('/delete', deleteTaskData);
 
 export { taskRouter };

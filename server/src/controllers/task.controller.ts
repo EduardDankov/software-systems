@@ -110,10 +110,21 @@ async function updateTaskData(req: Request, res: Response) {
   res.status(200).json(dbRes.rows);
 }
 
+async function deleteTaskData(req: Request, res: Response) {
+  const queryString: string = `
+    DELETE FROM tasks 
+    WHERE task_id=$1 
+    RETURNING task_id AS id
+  `;
+  const dbRes: QueryResult = await db.query(queryString, [req.body.taskId]);
+  res.status(200).json(dbRes.rows);
+}
+
 export {
   getCount,
   getTaskData,
   getTaskDataByProject,
   insertTaskData,
-  updateTaskData
+  updateTaskData,
+  deleteTaskData
 };

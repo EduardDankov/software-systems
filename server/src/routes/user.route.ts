@@ -1,7 +1,7 @@
 import {Router} from "express";
 import {
   checkCredentials,
-  checkIsEmailTaken,
+  checkIsEmailTaken, deleteCredentials,
   getCount, getUserData,
   insertCredentials,
   updateCredentials
@@ -16,5 +16,6 @@ userRouter.get('/email-taken', checkIsEmailTaken);
 userRouter.post('/login', checkCredentials);
 userRouter.post('/register', insertCredentials);
 userRouter.post('/update', updateCredentials);
+userRouter.post('/delete', deleteCredentials);
 
 export { userRouter };

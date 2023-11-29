@@ -46,11 +46,18 @@ async function updateCredentials(req: Request, res: Response) {
   res.status(200).json(dbRes.rows);
 }
 
+async function deleteCredentials(req: Request, res: Response) {
+  const queryString: string = `DELETE FROM users WHERE user_id=$1 RETURNING user_id AS id`;
+  const dbRes: QueryResult = await db.query(queryString, [req.body.userId]);
+  res.status(200).json(dbRes.rows);
+}
+
 export {
   getCount,
   getUserData,
   checkIsEmailTaken,
   checkCredentials,
   insertCredentials,
-  updateCredentials
+  updateCredentials,
+  deleteCredentials
 };
