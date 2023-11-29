@@ -36,7 +36,7 @@ function UserDelete() {
 
   useEffect(() => {
     if (isUserDeleted) {
-      navigate(`/`)
+      navigate(`/user/logout`)
     }
   }, [isUserDeleted]);
 
