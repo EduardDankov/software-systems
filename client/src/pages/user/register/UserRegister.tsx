@@ -12,7 +12,7 @@ type RegisterCredentials = {
   password: string;
 };
 
-function Register() {
+function UserRegister() {
   const navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(false);
   const [isEmailTaken, setIsEmailTaken] = useState(false);
@@ -117,5 +117,5 @@ function Register() {
   );
 }
 
-export {Register};
+export {UserRegister};
 export type {RegisterCredentials};

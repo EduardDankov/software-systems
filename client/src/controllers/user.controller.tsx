@@ -2,8 +2,8 @@ import React from "react";
 import axios, {AxiosResponse} from "axios";
 
 import {fetchCount} from "./entity.controller";
-import {LogInCredentials} from "../pages/user/login/LogIn";
-import {RegisterCredentials} from "../pages/user/register/Register";
+import {LogInCredentials} from "../pages/user/login/UserLogIn.tsx";
+import {RegisterCredentials} from "../pages/user/register/UserRegister.tsx";
 import {User} from "../models/user";
 
 type UserServerData = {

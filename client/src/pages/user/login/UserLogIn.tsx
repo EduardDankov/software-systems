@@ -12,7 +12,7 @@ type LogInCredentials = {
   password: string;
 };
 
-function LogIn() {
+function UserLogIn() {
   const navigate = useNavigate();
   const [isDataCorrect, setIsDataCorrect] = useState(false);
   const [userData, setUserData] = useState<User>({
@@ -100,5 +100,5 @@ function LogIn() {
   );
 }
 
-export { LogIn };
+export { UserLogIn };
 export type { LogInCredentials };

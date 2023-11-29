@@ -4,7 +4,7 @@ import {useEffect} from "react";
 
 import {Menu} from "../../../components/Menu";
 
-function LogOut() {
+function UserLogOut() {
   const navigate = useNavigate();
 
   const redirectToLogIn = () => navigate('/user/login');
@@ -24,4 +24,4 @@ function LogOut() {
   );
 }
 
-export { LogOut };
+export { UserLogOut };
