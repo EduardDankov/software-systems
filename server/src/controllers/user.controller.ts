@@ -28,8 +28,9 @@ async function checkIsEmailTaken(req: Request, res: Response) {
 }
 
 async function checkCredentials(req: Request, res: Response) {
-  const queryString: string = 'SELECT user_id AS id, username FROM users WHERE email=$1 AND password=$2';
-  const dbRes: QueryResult = await db.query(queryString, [req.body.email, req.body.password]);
+  const queryString: string = 'SELECT user_id AS id, password, username FROM users WHERE email=$1';
+  const dbRes: QueryResult = await db.query(queryString, [req.body.email]);
+  console.log(req.body, dbRes.rows)
   res.status(200).json(dbRes.rows);
 }
 
