@@ -4,6 +4,7 @@ import {Tasks} from "../pages/task/Tasks";
 import {TaskCreate} from "../pages/task/create/TaskCreate";
 import {TaskDetails} from "../pages/task/details/TaskDetails";
 import {TaskEdit} from "../pages/task/details/edit/TaskEdit";
+import {TaskDelete} from "../pages/task/delete/TaskDelete";
 import {NotFound} from "../pages/error/NotFound";
 
 function TaskRouter() {
@@ -13,6 +14,7 @@ function TaskRouter() {
       <Route path="/create" element={<TaskCreate />} />
       <Route path="/:taskId" element={<TaskDetails />} />
       <Route path="/:taskId/edit" element={<TaskEdit />} />
+      <Route path="/:taskId/delete" element={<TaskDelete />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

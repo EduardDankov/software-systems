@@ -66,7 +66,7 @@ function TaskDetails() {
                         <Button
                           key={(+taskId! || 0) + 101}
                           variant="danger"
-                          onClick={() => navigate(`/task/delete/${taskId}`)}
+                          onClick={() => navigate(`/task/${taskId}/delete`)}
                         >Delete Task</Button>
                       </>
                     : <></>
