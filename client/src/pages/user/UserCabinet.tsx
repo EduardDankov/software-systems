@@ -135,6 +135,10 @@ function UserCabinet() {
                 }
               </Form.Group>
               <Button variant="primary" type="submit">Save</Button>
+              <Button
+                variant="danger"
+                onClick={() => navigate(`/user/${userData.id}/delete`)}
+              >Delete Profile</Button>
             </Form>
           </Col>
         </Row>
