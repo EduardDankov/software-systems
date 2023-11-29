@@ -34,7 +34,6 @@ function LogIn() {
 
   useEffect(() => {
     if (isDataCorrect) {
-      console.log(userData)
       sessionStorage.setItem('isLoggedIn', "1");
       sessionStorage.setItem('userData', JSON.stringify(userData));
       navigate('/user');

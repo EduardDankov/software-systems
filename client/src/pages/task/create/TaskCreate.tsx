@@ -37,7 +37,6 @@ function TaskCreate() {
   ]).then(() => setIsDataLoaded(true));
 
   const handleCreation = async (data: FieldValues) => {
-    console.log(data, userData, projects, projects.filter(project => project.manager.id === userData.id))
     if (!userData.id || !projects.filter(project => project.manager.id === userData.id)) {
       window.reportError(new Error("You have to log in as a project manager to create a task."));
     } else {
