@@ -64,7 +64,7 @@ function ProjectDelete() {
               isDataLoaded
                 ? projects.map(project =>
                   <Form key={projectId} onSubmit={handleSubmit(deleteProject)}>
-                    <h1 className="page-title">Delete Task #{projectId}</h1>
+                    <h1 className="page-title">Delete Project #{projectId}</h1>
                     {
                       isProjectDeleted
                         ? <p className="text-success">Project deleted successfully.</p>
