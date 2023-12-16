@@ -21,7 +21,7 @@ function App() {
       <ErrorModal
         show={isError}
         onHide={() => setIsError(false)}
-        errorMessage={errorMessage}
+        message={errorMessage}
       />
       <RouterProvider router={router} />
     </>

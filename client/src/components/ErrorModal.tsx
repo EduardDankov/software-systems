@@ -3,7 +3,7 @@ import {Button, Modal} from "react-bootstrap";
 interface ErrorModalProps {
   show: boolean;
   onHide: () => void;
-  errorMessage: string;
+  message: string;
 }
 
 function ErrorModal(props: ErrorModalProps) {
@@ -19,7 +19,7 @@ function ErrorModal(props: ErrorModalProps) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{props.errorMessage}</p>
+        <p>{props.message}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
@@ -29,3 +29,4 @@ function ErrorModal(props: ErrorModalProps) {
 }
 
 export {ErrorModal};
+export type {ErrorModalProps};
