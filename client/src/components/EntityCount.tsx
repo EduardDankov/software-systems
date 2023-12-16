@@ -41,3 +41,4 @@ class EntityCount extends React.Component<EntityCountProps> {
 }
 
 export {EntityCount};
+export type {EntityCountProps};
