@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 
-import {UserLogIn} from "../user/login/UserLogIn.tsx";
+import {UserLogIn} from "../../user/login/UserLogIn.tsx";
 
 describe('Pages', () => {
   describe('UserLogIn', () => {

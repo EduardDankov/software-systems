@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {UserRegister} from "../user/register/UserRegister.tsx";
+import {UserRegister} from "../../user/register/UserRegister.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 
