@@ -178,7 +178,6 @@ function TaskEdit() {
                   <Form.Group className="mb-3" controlId="controlTaskPriority">
                     <Form.Label>Priority</Form.Label>
                     <Form.Select
-                      placeholder={TaskTable.taskPriority[task.priority]}
                       defaultValue={task.priority}
                       { ...register("taskPriority", {required: true}) }
                     >
@@ -202,7 +201,6 @@ function TaskEdit() {
                   <Form.Group className="mb-3" controlId="controlTaskPriority">
                     <Form.Label>Status</Form.Label>
                     <Form.Select
-                      placeholder={TaskTable.taskStatus[task.status]}
                       defaultValue={task.status}
                       { ...register("taskStatus") }
                     >
@@ -224,7 +222,6 @@ function TaskEdit() {
                         <Form.Group className="mb-3" controlId="controlTaskProject">
                           <Form.Label>Project</Form.Label>
                           <Form.Select
-                            placeholder={task.project.name}
                             defaultValue={task.project.id}
                             { ...register("taskProject") }
                           >
