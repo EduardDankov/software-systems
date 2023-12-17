@@ -1,18 +1,18 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {ProjectEdit} from "../../project/details/edit/ProjectEdit.tsx";
+import {ProjectDelete} from "../../../pages/project/details/delete/ProjectDelete.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 
 describe('Pages', () => {
-  describe('ProjectEdit', () => {
-    it('should render ProjectEdit page', () => {
+  describe('ProjectDelete', () => {
+    it('should render ProjectDelete page', () => {
       const testId: number = 1;
       render(
         <div data-testid={testId}>
           <BrowserRouter>
-            <ProjectEdit />
+            <ProjectDelete />
           </BrowserRouter>
         </div>
       );

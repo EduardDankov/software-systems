@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {TaskCreate} from "../../task/create/TaskCreate.tsx";
+import {TaskCreate} from "../../../pages/task/create/TaskCreate.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 

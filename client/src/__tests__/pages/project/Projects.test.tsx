@@ -1,20 +1,20 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {Tasks} from "../../task/Tasks.tsx";
+import {Projects} from "../../../pages/project/Projects.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 
 describe('Pages', () => {
-  describe('Tasks', () => {
+  describe('Projects', () => {
     it('should render Projects page', () => {
       render(
         <BrowserRouter>
-          <Tasks />
+          <Projects />
         </BrowserRouter>
       );
 
-      const content: Array<HTMLElement> = screen.getAllByText(/Tasks/);
+      const content: Array<HTMLElement> = screen.getAllByText(/Projects/);
 
       content.forEach(element => expect(element).toBeInTheDocument());
       expect(content.length).toEqual(2); // Page title and menu link label

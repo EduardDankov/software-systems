@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {ProjectTable} from "../ProjectTable.tsx";
+import {ProjectTable} from "../../components/ProjectTable.tsx";
 import {Project} from "../../models/project.tsx";
 
 describe('Components', () => {

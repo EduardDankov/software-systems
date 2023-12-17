@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {TaskTable} from '../TaskTable.tsx';
+import {TaskTable} from '../../components/TaskTable.tsx';
 import {Task, TaskPriority, TaskStatus} from "../../models/task.tsx";
 
 describe('Components', () => {

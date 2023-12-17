@@ -1,20 +1,19 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
-
-import {TaskDetails} from "../../task/details/TaskDetails.tsx";
 import {BrowserRouter} from "react-router-dom";
 
+import {UserLogOut} from "../../../pages/user/logout/UserLogOut.tsx";
 
 describe('Pages', () => {
-  describe('TaskDetails', () => {
-    it('should render TaskDetails page', () => {
+  describe('UserLogOut', () => {
+    it('should render UserLogOut page', () => {
       render(
         <BrowserRouter>
-          <TaskDetails />
+          <UserLogOut />
         </BrowserRouter>
       );
 
-      const content: HTMLElement = screen.getByText(/Task #/);
+      const content: HTMLElement = screen.getByText(/You were logged out/);
 
       expect(content).toBeInTheDocument();
     });

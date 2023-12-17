@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {ErrorModal, ErrorModalProps} from "../ErrorModal.tsx";
+import {ErrorModal, ErrorModalProps} from "../../components/ErrorModal.tsx";
 
 describe('Components', () => {
   describe('ErrorModal', () => {

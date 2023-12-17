@@ -1,23 +1,22 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
-
-import {Home} from "../Home.tsx";
 import {BrowserRouter} from "react-router-dom";
 
+import {UserLogIn} from "../../../pages/user/login/UserLogIn.tsx";
 
 describe('Pages', () => {
-  describe('Home', () => {
-    it('should render Home page', () => {
+  describe('UserLogIn', () => {
+    it('should render UserLogin page', () => {
       render(
         <BrowserRouter>
-          <Home />
+          <UserLogIn />
         </BrowserRouter>
       );
 
-      const content: Array<HTMLElement> = screen.getAllByText(/Software Systems/);
+      const content: Array<HTMLElement> = screen.getAllByText(/Log In/);
 
       content.forEach(element => expect(element).toBeInTheDocument());
-      expect(content.length).toEqual(2); // Brand and page title
+      expect(content.length).toEqual(2); // Page title and submit button label
     });
   });
 });

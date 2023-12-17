@@ -1,18 +1,18 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {ProjectDelete} from "../../project/details/delete/ProjectDelete.tsx";
+import {TaskDelete} from "../../../pages/task/details/delete/TaskDelete.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 
 describe('Pages', () => {
-  describe('ProjectDelete', () => {
-    it('should render ProjectDelete page', () => {
+  describe('TaskDelete', () => {
+    it('should render TaskDelete page', () => {
       const testId: number = 1;
       render(
         <div data-testid={testId}>
           <BrowserRouter>
-            <ProjectDelete />
+            <TaskDelete />
           </BrowserRouter>
         </div>
       );

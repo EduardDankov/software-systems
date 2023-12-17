@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {NotFound} from "../../error/NotFound.tsx";
+import {NotFound} from "../../../pages/error/NotFound.tsx";
 
 describe('Pages', () => {
   describe('NotFound', () => {

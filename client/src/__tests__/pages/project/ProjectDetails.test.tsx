@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {ProjectDetails} from "../../project/details/ProjectDetails.tsx";
+import {ProjectDetails} from "../../../pages/project/details/ProjectDetails.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 

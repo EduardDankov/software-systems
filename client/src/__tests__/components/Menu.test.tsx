@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 
-import {Menu} from "../Menu.tsx";
+import {Menu} from "../../components/Menu.tsx";
 import {User} from "../../models/user.tsx";
 
 describe('Components', () => {

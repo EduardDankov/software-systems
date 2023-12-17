@@ -1,23 +1,23 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {Projects} from "../../project/Projects.tsx";
+import {Home} from "../../pages/Home.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 
 describe('Pages', () => {
-  describe('Projects', () => {
-    it('should render Projects page', () => {
+  describe('Home', () => {
+    it('should render Home page', () => {
       render(
         <BrowserRouter>
-          <Projects />
+          <Home />
         </BrowserRouter>
       );
 
-      const content: Array<HTMLElement> = screen.getAllByText(/Projects/);
+      const content: Array<HTMLElement> = screen.getAllByText(/Software Systems/);
 
       content.forEach(element => expect(element).toBeInTheDocument());
-      expect(content.length).toEqual(2); // Page title and menu link label
+      expect(content.length).toEqual(2); // Brand and page title
     });
   });
 });

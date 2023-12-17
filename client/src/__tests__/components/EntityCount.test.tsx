@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {EntityCount, EntityCountProps} from "../EntityCount.tsx";
+import {EntityCount, EntityCountProps} from "../../components/EntityCount.tsx";
 
 describe('Components', () => {
   describe('EntityCount', () => {

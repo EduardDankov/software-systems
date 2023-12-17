@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
 
-import {UserDelete} from "../../user/delete/UserDelete.tsx";
+import {UserDelete} from "../../../pages/user/delete/UserDelete.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 

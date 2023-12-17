@@ -1,19 +1,20 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
+
+import {UserRegister} from "../../../pages/user/register/UserRegister.tsx";
 import {BrowserRouter} from "react-router-dom";
 
-import {UserLogIn} from "../../user/login/UserLogIn.tsx";
 
 describe('Pages', () => {
-  describe('UserLogIn', () => {
-    it('should render UserLogin page', () => {
+  describe('UserRegister', () => {
+    it('should render UserRegister page', () => {
       render(
         <BrowserRouter>
-          <UserLogIn />
+          <UserRegister />
         </BrowserRouter>
       );
 
-      const content: Array<HTMLElement> = screen.getAllByText(/Log In/);
+      const content: Array<HTMLElement> = screen.getAllByText(/Register/);
 
       content.forEach(element => expect(element).toBeInTheDocument());
       expect(content.length).toEqual(2); // Page title and submit button label
