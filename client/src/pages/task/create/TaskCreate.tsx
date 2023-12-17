@@ -68,7 +68,7 @@ function TaskCreate() {
         <Row className="justify-content-md-center">
           <Col md="8" xl="6">
             <Form key={taskId} onSubmit={handleSubmit(handleCreation)}>
-              <h1 className="page-title">Create a task</h1>
+              <h1 className="page-title">Create a Task</h1>
               <Form.Group className="mb-3" controlId="controlTaskName">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
@@ -110,7 +110,6 @@ function TaskCreate() {
               <Form.Group className="mb-3" controlId="controlTaskPriority">
                 <Form.Label>Priority</Form.Label>
                 <Form.Select
-                  placeholder="Pick a priority"
                   defaultValue={1}
                   { ...register("taskPriority", {required: true}) }
                 >
@@ -137,7 +136,6 @@ function TaskCreate() {
                     <Form.Group className="mb-3" controlId="controlTaskProject">
                       <Form.Label>Project</Form.Label>
                       <Form.Select
-                        placeholder="Pick a project"
                         { ...register("taskProject") }
                       >
                         {
@@ -155,7 +153,6 @@ function TaskCreate() {
                     <Form.Group className="mb-3" controlId="controlTaskAssignee">
                       <Form.Label>Assignee</Form.Label>
                       <Form.Select
-                        placeholder="Pick an assignee"
                         { ...register("taskAssignee") }
                       >
                         {
