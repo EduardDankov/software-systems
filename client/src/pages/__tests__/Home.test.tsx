@@ -1,12 +1,13 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
+
 import {Home} from "../Home.tsx";
 import {BrowserRouter} from "react-router-dom";
 
 
 describe('Pages', () => {
   describe('Home', () => {
-    it('render Home page', () => {
+    it('should render Home page', () => {
       render(
         <BrowserRouter>
           <Home />
