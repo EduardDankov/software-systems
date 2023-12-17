@@ -7,7 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 
 describe('Pages', () => {
   describe('ProjectDetails', () => {
-    it('should render Projects page', () => {
+    it('should render ProjectDetails page', () => {
       render(
         <BrowserRouter>
           <ProjectDetails />
