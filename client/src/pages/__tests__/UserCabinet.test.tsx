@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import {render, screen} from "@testing-library/react";
+
 import {UserCabinet} from "../user/UserCabinet.tsx";
 import {BrowserRouter} from "react-router-dom";
 
