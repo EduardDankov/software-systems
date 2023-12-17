@@ -14,7 +14,6 @@ describe('Pages', () => {
         </BrowserRouter>
       );
 
-      // Should redirect to login page if unauthorized
       const content: HTMLElement = screen.getByText(/Cabinet/);
 
       expect(content).toBeInTheDocument();
