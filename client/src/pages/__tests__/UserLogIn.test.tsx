@@ -5,7 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import {UserLogIn} from "../user/login/UserLogIn.tsx";
 
 describe('Pages', () => {
-  describe('UserLogin', () => {
+  describe('UserLogIn', () => {
     it('should render UserLogin page', () => {
       render(
         <BrowserRouter>
